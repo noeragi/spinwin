@@ -17,8 +17,8 @@ export function DrawActionButton() {
 
   if (allPrizesComplete) {
     return (
-      <ResetButton variant="secondary" className="h-16 w-full max-w-md text-xl">
-        <RotateCcw className="size-6" /> Reset &amp; Run Again
+      <ResetButton variant="secondary" className="h-24 w-full max-w-xl text-3xl">
+        <RotateCcw className="size-9" /> Reset &amp; Run Again
       </ResetButton>
     );
   }
@@ -29,9 +29,9 @@ export function DrawActionButton() {
         variant="destructive"
         onClick={stopDraw}
         disabled={isStopping}
-        className="h-16 w-full max-w-md text-xl"
+        className="h-24 w-full max-w-xl text-3xl"
       >
-        <Square className="size-6" /> {isStopping ? "Stopping…" : "Stop Draw"}
+        <Square className="size-9" /> {isStopping ? "Berhenti..." : "Hentikan"}
       </Button>
     );
   }
@@ -40,9 +40,9 @@ export function DrawActionButton() {
     <Button
       onClick={startDraw}
       disabled={!canStart || !currentPrize}
-      className="h-16 w-full max-w-md text-xl"
+      className="h-24 w-full max-w-xl text-3xl"
     >
-      <Play className="size-6" /> Start Draw
+      <Play className="size-9" /> Kocok Bwaang
     </Button>
   );
 }

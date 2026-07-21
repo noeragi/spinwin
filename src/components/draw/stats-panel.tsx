@@ -33,12 +33,12 @@ function StatTile({
   );
 }
 
-export function StatsPanel() {
+export function StatsPanel({ compact = false }: { compact?: boolean }) {
   const { state } = useDraw();
   const { stats } = state;
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div className={cn("grid grid-cols-2 gap-3", !compact && "sm:grid-cols-4")}>
       <StatTile icon={Users} label="Total participants" value={stats?.total ?? "—"} />
       <StatTile icon={UserCheck} label="Remaining" value={stats?.remaining ?? "—"} />
       <StatTile icon={Trophy} label="Winners drawn" value={stats?.winners ?? "—"} accent />

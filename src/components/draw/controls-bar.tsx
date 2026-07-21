@@ -21,6 +21,7 @@ import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
 import { UploadDialog } from "@/components/draw/upload-dialog";
 import { SettingsPanel } from "@/components/draw/settings-panel";
 import { WinnerHistoryDialog } from "@/components/draw/winner-history-dialog";
+import { StatsPanelDialog } from "@/components/draw/stats-panel-dialog";
 import { ResetButton } from "@/components/draw/reset-button";
 
 export function ControlsBar() {
@@ -107,6 +108,8 @@ export function ControlsBar() {
             <Button variant="ghost" size="icon" onClick={() => setSettingsOpen(true)} aria-label="Draw settings">
               <SlidersHorizontal />
             </Button>
+
+            <StatsPanelDialog />
 
             <ResetButton
               variant="ghost"

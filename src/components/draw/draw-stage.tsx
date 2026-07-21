@@ -102,36 +102,37 @@ export function DrawStage() {
       </p>
       <div
         className={cn(
-          "retro-card w-full max-w-4xl px-8 py-14 text-center transition-transform duration-300",
+          "retro-card flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-8 py-16 text-center transition-transform duration-300",
           isRevealed && "-rotate-1 scale-[1.02] border-primary"
         )}
       >
-        <div className="mb-6 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground">
-          <Sparkles className="size-4" />
-          {isRevealed ? "Winner" : isRolling ? "Drawing…" : "Ready"}
+        <div className="mb-8 flex items-center justify-center gap-2 text-base font-bold uppercase tracking-[0.3em] text-muted-foreground">
+          <Sparkles className="size-5" />
+          {isRevealed ? "Pemenang" : isRolling ? "Pengundian Berjalan..." : "Ready"}
         </div>
 
         <AnimatePresence mode="wait">
           <motion.div
-            key={display?.name ?? "empty"}
+            key={display?.plateNumber ?? "empty"}
             initial={reduceMotion ? false : { opacity: 0, y: isRolling ? 8 : 24, scale: isRevealed ? 0.9 : 1 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: isRolling ? -8 : -12 }}
             transition={{ duration: reduceMotion ? 0 : isRolling ? 0.05 : 0.4, ease: "easeOut" }}
             className={cn(
-              "font-extrabold leading-tight text-foreground",
-              "text-[clamp(2.25rem,6vw,5.5rem)]",
+              "flex items-center justify-center gap-4 font-mono font-extrabold leading-tight tracking-widest text-foreground",
+              "text-[clamp(3rem,9vw,8rem)]",
               isRevealed && "text-primary"
             )}
           >
-            {display?.name ?? "—"}
+            <Car className="size-[0.6em] shrink-0" />
+            {display?.plateNumber ?? "—"}
           </motion.div>
         </AnimatePresence>
 
-        {display?.plateNumber && (
-          <div className="mt-5 flex items-center justify-center">
-            <span className="flex items-center gap-2 rounded-lg border-2 border-foreground bg-secondary px-4 py-1.5 font-mono font-bold tracking-widest text-secondary-foreground text-[clamp(1rem,1.6vw,1.375rem)]">
-              <Car className="size-5" /> {display.plateNumber}
+        {display?.name && (
+          <div className="mt-8 flex items-center justify-center">
+            <span className="rounded-lg border-2 border-foreground bg-secondary px-5 py-2 font-bold tracking-wide text-secondary-foreground text-[clamp(1.125rem,2.2vw,1.75rem)]">
+              {display.name}
             </span>
           </div>
         )}
