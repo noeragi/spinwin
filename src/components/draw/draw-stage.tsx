@@ -78,12 +78,6 @@ export function DrawStage() {
   }, [status, isStopping, rollPool, rollSpeedMs, rollDurationMs, soundEnabled]);
 
   useEffect(() => {
-    if (status !== "rolling") {
-      setRollingDisplay(null);
-    }
-  }, [status]);
-
-  useEffect(() => {
     if ((status === "revealing" || status === "celebrating") && lastWinner) {
       if (confettiFiredForRef.current !== lastWinner.winnerId) {
         confettiFiredForRef.current = lastWinner.winnerId;
@@ -117,10 +111,12 @@ export function DrawStage() {
           isRevealed && "-rotate-1 scale-[1.02] border-primary"
         )}
       >
-        <div className="mb-4 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground sm:mb-8 sm:text-base">
-          <Sparkles className="size-4 sm:size-5" />
-          {isRevealed ? "Pemenang" : isRolling ? "Pengundian Berjalan..." : "Ready"}
-        </div>
+        {!isRolling && (
+          <div className="mb-4 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground sm:mb-8 sm:text-base">
+            <Sparkles className="size-4 sm:size-5" />
+            {isRevealed ? "Pemenang" : "Ready"}
+          </div>
+        )}
 
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
